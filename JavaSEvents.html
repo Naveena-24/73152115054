@@ -1,0 +1,30 @@
+<html>
+    <head><title>events</title>
+       <script>
+         function addition (a,b) {
+            let sum =a+b;
+            alert("Addition : "+sum);
+
+        }
+        function mouseoverevent (a,b) {
+            
+            alert("This is javapoint");
+
+        
+        }
+        function alertescape() {
+            document.write("This page is loaded successfully");
+        }
+       
+       </script>
+    </head>
+    <body onload="window.alert('Event successfully loaded');">
+        <button onclick="addition(10,20)">Addition</button>
+        <br><br>
+        <button onmouseover="mouseoverevent()">Keep cursor over me</button>
+        <br><br>
+
+        
+
+    </body>
+</html>
