@@ -1,0 +1,25 @@
+<html>
+    <head><title>Page</title>
+        <script>
+            function palindrome() {
+                let s1=document.getElementById("n1").value;
+                let s2="";
+                for(let i=s1.length-1;i>=0;i++){
+                    s2=s2+s1;
+                }
+                if(s1==s2){
+                    document.write("palindrome");
+                }
+                else{
+                    document.write("not a palindrome");
+                }
+            }
+        </script>
+    </head>
+    <body>
+        Enter the string <input type="text" id="n1"/>
+        <br>
+        <button onclick="palindrome()">check</button>
+        <br>
+    </body>
+</html>

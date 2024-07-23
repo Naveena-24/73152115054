@@ -1,0 +1,26 @@
+<html>
+    <head><title>page</title>
+        <script>
+            function prime () {     
+                let count,i;
+                let a=parseInt(document.getElementById ("one").value);
+                for(let i=2;i<a;i++){
+                    if(a%2==0){
+                        count=count+1;
+                    }
+                }
+                if(count<=2){
+                    document.getElementById("two").innerHTML=a+"is a prime number";
+                }
+                else{
+                    document.getElementById("two").innerHTML=a+"is not a prime number";
+                }
+            }
+        </script>
+    </head>
+    <body>
+        Enter Number<input type="text" id="" /><br><br>
+        <button onclick="prime()">check</button><br><br>
+        <div id="two"></div>
+    </body>
+</html>
