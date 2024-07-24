@@ -1,0 +1,33 @@
+<html>
+    <head><title>Arrow</title>
+    </head>
+    <body>
+        <script>
+            const Sum =()=> 10 + 20;
+            document.write("<br>Addition : "+Sum());
+
+            const Sub =(x,y)=> x-y;
+            document.write("<br>subraction : "+Sub(30,20));
+
+            const Multi =(x,y)=> {return (x*y)} ;
+            document.write("<br>Multiplication : "+Multi(10,20));
+
+            const big =(x,y)=> {
+                if(x>y)
+                return x;
+            else
+            return y;
+            };
+            document.write("<br>Biggest Number : "+big(10,20));
+            const fact =(a)=> {
+                let fact=1;
+                for(let i=1;i<=a;i++){
+                    fact=fact*i;
+                }
+                 return fact;
+            };
+              document.write("<br>Factorial Number : "+fact(5));
+            
+        </script>
+    </body>
+</html>
