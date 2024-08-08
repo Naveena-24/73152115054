@@ -1,0 +1,338 @@
+
+SQL*Plus: Release 11.2.0.2.0 Production on Wed Aug 7 14:00:45 2024
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> connect system;
+Enter password:
+Connected.
+SQL> create table Employee_Master(eid number(10),ename varchar(20),esalary varchar(15));
+
+Table created.
+SQL>  insert into Employee_Master values(101,'Ram','20000');
+
+1 row created.
+
+SQL> insert into Employee_Master values(102,'Sam','25000');
+
+1 row created.
+
+SQL> insert into Employee_Master values(103,'Raj','55000');
+
+1 row created.
+
+SQL> insert into Employee_Master values(104,'Ramya','35000');
+
+1 row created.
+
+SQL>  select *from Employee_MASTER;
+
+       EID ENAME                ESALARY
+---------- -------------------- ---------------
+       101 Ram                  20000
+       102 Sam                  25000
+       103 Raj                  55000
+       104 Ramya                35000
+
+SQL> select *from Employee_Master where eid in (101,103,104);
+
+       EID ENAME                ESALARY
+---------- -------------------- ---------------
+       101 Ram                  20000
+       103 Raj                  55000
+       104 Ramya                35000
+
+SQL> select *from Employee_Master where eid not in (101,103,104);
+
+       EID ENAME                ESALARY
+---------- -------------------- ---------------
+       102 Sam                  25000
+
+SQL> select *from Employee_Master where esalary between 25000 and 55000;
+
+
+       EID ENAME                ESALARY
+---------- -------------------- ---------------
+       102 Sam                  25000
+       103 Raj                  55000
+       104 Ramya                35000
+
+SQL> select *from Employee_Master where esalary not between 25000 and 3500;
+
+       EID ENAME                ESALARY
+---------- -------------------- ---------------
+       101 Ram                  20000
+       102 Sam                  25000
+       103 Raj                  55000
+       104 Ramya                35000
+
+SQL> select *from Employee_Master where esalary not between 25000 and 35000;
+
+
+       EID ENAME                ESALARY
+---------- -------------------- ---------------
+       101 Ram                  20000
+       103 Raj                  55000
+
+SQL> select *from Employee_Master where esalary not between 65000 and 35000;
+
+
+       EID ENAME                ESALARY
+---------- -------------------- ---------------
+       101 Ram                  20000
+       102 Sam                  25000
+       103 Raj                  55000
+       104 Ramya                35000
+
+SQL> select *from Employee_Master where eid in(101,102,104) and esalary >25000;
+
+       EID ENAME                ESALARY
+---------- -------------------- ---------------
+       104 Ramya                35000
+
+SQL> select *from Employee_Master where eid in(102,103,104) or esalary >25000;
+
+       EID ENAME                ESALARY
+---------- -------------------- ---------------
+       102 Sam                  25000
+       103 Raj                  55000
+       104 Ramya                35000
+
+SQL>  select *from Employee_Master where eid >103 and esalary<55000;
+
+       EID ENAME                ESALARY
+---------- -------------------- ---------------
+       104 Ramya                35000
+
+SQL>  select *from Employee_Master where eid >103 or esalary<55000;
+
+       EID ENAME                ESALARY
+---------- -------------------- ---------------
+       101 Ram                  20000
+       102 Sam                  25000
+       104 Ramya                35000
+
+
+SQL> insert into Employee_Master(eid,esalary) values(102,25000);
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL>  select *from Employee_MASTER;
+
+       EID ENAME                ESALARY
+---------- -------------------- ---------------
+       101 Ram                  20000
+       102 Sam                  25000
+       103 Raj                  55000
+       104 Ramya                35000
+       102                      25000
+
+SQL> select *from Employee_Master where ename is null;
+
+       EID ENAME                ESALARY
+---------- -------------------- ---------------
+       102                      25000
+
+SQL> select *from Employee_Master where ename is  not null;
+
+       EID ENAME                ESALARY
+---------- -------------------- ---------------
+       101 Ram                  20000
+       102 Sam                  25000
+       103 Raj                  55000
+       104 Ramya                35000
+
+
+SQL>  select *from Employee_Master where ename like'R%';
+
+       EID ENAME                ESALARY
+---------- -------------------- ---------------
+       101 Ram                  20000
+       103 Raj                  55000
+       104 Ramya                35000
+
+SQL>  select *from Employee_Master where ename like '_a%';
+
+       EID ENAME                ESALARY
+---------- -------------------- ---------------
+       101 Ram                  20000
+       102 Sam                  25000
+       103 Raj                  55000
+       104 Ramya                35000
+
+SQL>  select *from Employee_Master where ename like '__j%';
+
+       EID ENAME                ESALARY
+---------- -------------------- ---------------
+       103 Raj                  55000
+
+SQL>  select *from Employee_Master where ename like '___y%';
+
+       EID ENAME                ESALARY
+---------- -------------------- ---------------
+       104 Ramya                35000
+
+SQL>  select *from Employee_Master where ename like '%m';
+
+       EID ENAME                ESALARY
+---------- -------------------- ---------------
+       101 Ram                  20000
+       102 Sam                  25000
+
+
+SQL>  select *from Employee_Master  order by eid;
+
+       EID ENAME                ESALARY
+---------- -------------------- ---------------
+       101 Ram                  20000
+       102 Sam                  25000
+       102                      25000
+       103 Raj                  55000
+       104 Ramya                35000
+
+SQL>  select *from Employee_Master  order by eid desc;
+
+       EID ENAME                ESALARY
+---------- -------------------- ---------------
+       104 Ramya                35000
+       103 Raj                  55000
+       102                      25000
+       102 Sam                  25000
+       101 Ram                  20000
+
+SQL> alter table Employee_Master add doj date;
+
+Table altered.
+
+SQL> select *from Employee_Master;
+
+       EID ENAME                ESALARY         DOJ
+---------- -------------------- --------------- ---------
+       101 Ram                  20000
+       102 Sam                  25000
+       103 Raj                  55000
+       104 Ramya                35000
+       102                      25000
+
+SQL> desc Employee_Master;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EID                                                NUMBER(10)
+ ENAME                                              VARCHAR2(20)
+ ESALARY                                            VARCHAR2(15)
+ DOJ                                                DATE
+
+SQL> update Employee_Master set doj=sysdate where eid=103;
+
+1 row updated.
+
+SQL> select *from Employee_Master;
+
+       EID ENAME                ESALARY         DOJ
+---------- -------------------- --------------- ---------
+       101 Ram                  20000
+       102 Sam                  25000
+       103 Raj                  55000           07-AUG-24
+       104 Ramya                35000
+       102                      25000
+
+SQL> update Employee_Master set doj='04-AUG-24' where eid in (103,104);
+
+2 rows updated.
+
+SQL> select *from Employee_Master;
+
+       EID ENAME                ESALARY         DOJ
+---------- -------------------- --------------- ---------
+       101 Ram                  20000
+       102 Sam                  25000
+       103 Raj                  55000           04-AUG-24
+       104 Ramya                35000           04-AUG-24
+       102                      25000
+
+
+SQL> update Employee_Master set doj='04-AUG-24' where eid in(102,104);
+
+3 rows updated.
+
+SQL> select *from Employee_Master;
+
+       EID ENAME                ESALARY         DOJ
+---------- -------------------- --------------- ---------
+       101 Ram                  20000
+       102 Sam                  25000           04-AUG-24
+       103 Raj                  55000           04-AUG-24
+       104 Ramya                35000           04-AUG-24
+       102                      25000           04-AUG-24
+
+SQL> update Employee_Master set doj='06-AUG-24' where eid in (103,104);
+
+2 rows updated.
+
+SQL> select *from Employee_Master;
+
+       EID ENAME                ESALARY         DOJ
+---------- -------------------- --------------- ---------
+       101 Ram                  20000
+       102 Sam                  25000           04-AUG-24
+       103 Raj                  55000           06-AUG-24
+       104 Ramya                35000           06-AUG-24
+       102                      25000           04-AUG-24
+
+SQL> alter table Employee_Master drop column doj;
+
+Table altered.
+
+SQL> select *from Employee_Master;
+
+       EID ENAME                ESALARY
+---------- -------------------- ---------------
+       101 Ram                  20000
+       102 Sam                  25000
+       103 Raj                  55000
+       104 Ramya                35000
+       102                      25000
+
+SQL> alter table Employee_Master  modify eid number(20);
+
+Table altered.
+
+SQL> select *from Employee_Master;
+
+       EID ENAME                ESALARY
+---------- -------------------- ---------------
+       101 Ram                  20000
+       102 Sam                  25000
+       103 Raj                  55000
+       104 Ramya                35000
+       102                      25000
+
+SQL> desc Employee_Master;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EID                                                NUMBER(20)
+ ENAME                                              VARCHAR2(20)
+ ESALARY                                            VARCHAR2(15)
+ 
+SQL> alter table Employee_Master rename column  esalary to salary;
+
+Table altered.
+
+SQL> desc Employee_Master;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EID                                                NUMBER(20)
+ ENAME                                              VARCHAR2(20)
+ SALARY                                             VARCHAR2(15)
+
+SQL> rename Employee_Master to Employee;
+
+Table renamed.
+
+SQL>
+
+

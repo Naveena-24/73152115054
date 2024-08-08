@@ -1,0 +1,86 @@
+
+SQL*Plus: Release 11.2.0.2.0 Production on Wed Aug 7 10:23:30 2024
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> connect system
+Enter password:
+Connected.
+SQL> create table CLIENT_MASTER(Client_No varchar(15),Name varchar(20),City varchar(15),Pincode varchar(10),Bal_due varchar(10));
+
+Table created.
+
+SQL> insert into CLIENT_MASTER values ('C00001','SMITHA JAIN','Mumbai',400054,15000);
+
+1 row created.
+
+SQL> insert into CLIENT_MASTER values ('C00002','VANDANA RAO','Chennai',7800
+01,0);
+
+1 row created.
+
+SQL> insert into CLIENT_MASTER values ('C00003','PREM PUJARI','Mumbai',40005
+7,500);
+
+1 row created.
+
+SQL> insert into CLIENT_MASTER values ('C00004','BASU NATH','Mumbai',400056,
+0);
+
+1 row created.
+
+SQL> insert into CLIENT_MASTER values ('C00005','RAVI SHANKAR','Delhi',10000
+1,2000);
+
+1 row created.
+
+SQL> insert into CLIENT_MASTER values ('C00006','ROOPA','Mumbai',400050,0);
+
+1 row created.
+
+SQL> select *from CLIENT_MASTER;
+
+CLIENT_NO       NAME                 CITY            PINCODE    BAL_DUE
+--------------- -------------------- --------------- ---------- ----------
+C00001          SMITHA JAIN          Mumbai          400054     15000
+C00002          VANDANA RAO          Chennai         780001     0
+C00003          PREM PUJARI          Mumbai          400057     500
+C00004          BASU NATH            Mumbai          400056     0
+C00005          RAVI SHANKAR         Delhi           100001     2000
+C00006          ROOPA                Mumbai          400050     0
+
+6 rows selected.
+
+SQL> select distinct *from CLIENT_MASTER where BAL_DUE=0;
+
+CLIENT_NO       NAME                 CITY            PINCODE    BAL_DUE
+--------------- -------------------- --------------- ---------- ----------
+C00002          VANDANA RAO          Chennai         780001     0
+C00006          ROOPA                Mumbai          400050     0
+C00004          BASU NATH            Mumbai          400056     0
+
+SQL> update CLIENT_MASTER set CITY='Jaipur' where CLIENT_NO='C00004';
+
+1 row updated.
+
+SQL> select distinct *from CLIENT_MASTER where CITY='Mumbai';
+
+CLIENT_NO       NAME                 CITY            PINCODE    BAL_DUE
+--------------- -------------------- --------------- ---------- ----------
+C00003          PREM PUJARI          Mumbai          400057     500
+C00006          ROOPA                Mumbai          400050     0
+C00001          SMITHA JAIN          Mumbai          400054     15000
+
+SQL>
+SQL> select distinct *from CLIENT_MASTER;
+
+CLIENT_NO       NAME                 CITY            PINCODE    BAL_DUE
+--------------- -------------------- --------------- ---------- ----------
+C00002          VANDANA RAO          Chennai         780001     0
+C00005          RAVI SHANKAR         Delhi           100001     2000
+C00003          PREM PUJARI          Mumbai          400057     500
+C00006          ROOPA                Mumbai          400050     0
+C00001          SMITHA JAIN          Mumbai          400054     15000
+C00004          BASU NATH            Jaipur          400056     0
+
+6 rows selected.
