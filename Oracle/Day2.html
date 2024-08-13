@@ -1,0 +1,101 @@
+
+SQL> connect system;
+Enter password:
+Connected.
+SQL>  create table Employee_Master(eid number(10),ename varchar(20),esalary varchar(15),DNO number(10));
+
+Table created.
+
+SQL> insert into Employee_Master values(101,'Ram','20000',10);
+
+1 row created.
+
+SQL> insert into Employee_Master values(102,'Sam','30000',10);
+
+1 row created.
+
+SQL> insert into Employee_Master values(103,'Ramya','50000',20);
+
+1 row created.
+
+SQL> insert into Employee_Master values(104,'Kumar','80000',30);
+
+1 row created.
+
+SQL> insert into Employee_Master values(105,'Gopi','80000',40);
+
+1 row created.
+
+SQL> insert into Employee_Master values(106,'Pradee','10000',40);
+
+1 row created.
+
+SQL> select *from Employee_Master;
+
+       EID ENAME                ESALARY                DNO
+---------- -------------------- --------------- ----------
+       101 Ram                  20000                   10
+       102 Sam                  30000                   10
+       103 Ramya                50000                   20
+       104 Kumar                80000                   30
+       105 Gopi                 80000                   40
+       106 Pradee               10000                   40
+
+6 rows selected.
+
+SQL> select DNO,count(*) from Employee_Master group by DNO;
+
+       DNO   COUNT(*)
+---------- ----------
+        30          1
+        20          1
+        40          2
+        10          2
+
+SQL> select DNO,count(*) ,sum(esalary),avg(esalary),min(esalary),max(esalary)from Employee_Master group by DNO;
+
+       DNO   COUNT(*) SUM(ESALARY) AVG(ESALARY) MIN(ESALARY)    MAX(ESALARY)
+---------- ---------- ------------ ------------ --------------- ---------------
+        30          1        80000        80000 80000           80000
+        20          1        50000        50000 50000           50000
+        40          2        90000        45000 10000           80000
+        10          2        50000        25000 20000           30000
+
+SQL> select DNO,count(*) ,sum(esalary),avg(esalary),min(esalary),max(esalary)from Employee_Master group by DNO order by DNO;
+
+       DNO   COUNT(*) SUM(ESALARY) AVG(ESALARY) MIN(ESALARY)    MAX(ESALARY)
+---------- ---------- ------------ ------------ --------------- ---------------
+        10          2        50000        25000 20000           30000
+        20          1        50000        50000 50000           50000
+        30          1        80000        80000 80000           80000
+        40          2        90000        45000 10000           80000
+
+SQL> select DNO,count(*) ,sum(esalary),avg(esalary),min(esalary),max(esalary)from Employee_Master group by DNO HAVING MIN(ESALARY) > 50000 order by DNO;
+
+       DNO   COUNT(*) SUM(ESALARY) AVG(ESALARY) MIN(ESALARY)    MAX(ESALARY)
+---------- ---------- ------------ ------------ --------------- ---------------
+        30          1        80000        80000 80000           80000
+
+SQL> select DNO,count(*) ,sum(esalary),avg(esalary),min(esalary),max(esalary)from Employee_Master group by DNO HAVING MIN(ESALARY) < 50000 order by DNO;
+
+
+       DNO   COUNT(*) SUM(ESALARY) AVG(ESALARY) MIN(ESALARY)    MAX(ESALARY)
+---------- ---------- ------------ ------------ --------------- ---------------
+        10          2        50000        25000 20000           30000
+        40          2        90000        45000 10000           80000
+
+        view:
+
+        SQL> create view myview as select * from Employee_emp where dno=10;
+
+View created.
+
+SQL> select * from myview;
+
+no rows selected
+
+SQL> select * from Employee_emp;
+
+       EID ENAME                   ESALARY        DNO
+---------- -------------------- ---------- ----------
+       102 Naveena                   50000        101
